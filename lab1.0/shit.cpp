@@ -22,7 +22,7 @@ void printStruct(Element* A){
 }
 
 Element* getStructFromArray(char A[]){
-	Element* strA;
+	Element* strA = nullptr;
 	for(int i = 0; A[i]; i++){
 		Element* a = new Element(A[i], strA);
 		strA = a;
@@ -60,8 +60,8 @@ int main() {
 	char A[u], B[u], C[u], D[u];
 	char E[u];
 	cin >> A;
-			Element* strA = NULL;
-			strA = getStructFromArray(A);
-			printStruct(strA);
+	Element* strA = nullptr;
+	strA = getStructFromArray(A);
+	printStruct(strA);
 	return 0;
 }
