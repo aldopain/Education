@@ -153,49 +153,50 @@ int main() {
 	cin >> menu;
 	switch (menu){
 		case '1':{
-				int curLen = 0;
-				curLen = copyElements(A, E, D, curLen);
-				curLen = copyElements(B, E, D, curLen);
-				curLen = copyElements(C, E, D, curLen);
-				E[curLen] = 0;
-				cout << E << endl;
+			int curLen = 0;
+			curLen = copyElements(A, E, D, curLen);
+			curLen = copyElements(B, E, D, curLen);
+			curLen = copyElements(C, E, D, curLen);
+			E[curLen] = 0;
+			cout << E << endl;
+			break;
 		}
 		case '2':{
-				Element* strA = nullptr;
-				Element* strB = nullptr;
-				Element* strC = nullptr;
-				Element* strD = nullptr;
-				Element* strE = nullptr;
-				strA = getStructFromArray(A);
-				strB = getStructFromArray(B);
-				strC = getStructFromArray(C);
-				strD = getStructFromArray(D);
-				strE = copyElements(strA, strD, strE);
-				strE = copyElements(strB, strD, strE);
-				strE = copyElements(strC, strD, strE);
-				printStruct(strE);
-				break;
+			Element* strA = nullptr;
+			Element* strB = nullptr;
+			Element* strC = nullptr;
+			Element* strD = nullptr;
+			Element* strE = nullptr;
+			strA = getStructFromArray(A);
+			strB = getStructFromArray(B);
+			strC = getStructFromArray(C);
+			strD = getStructFromArray(D);
+			strE = copyElements(strA, strD, strE);
+			strE = copyElements(strB, strD, strE);
+			strE = copyElements(strC, strD, strE);
+			printStruct(strE);
+			break;
 		}
 		case '3':{
-				int* mapA = new int[u];
-				int* mapB = new int[u];
-				int* mapC = new int[u];
-				int* mapD = new int[u];
-				mapA = universumMapping(universum, A);
-				mapB = universumMapping(universum, B);
-				mapC = universumMapping(universum, C);
-				mapD = universumMapping(universum, D);
-				int* mapE = copyElements(mapA, mapB, mapC, mapD);
-				printByteArray(mapE, universum);
-                break;
+			int* mapA = new int[u];
+			int* mapB = new int[u];
+			int* mapC = new int[u];
+			int* mapD = new int[u];
+			mapA = universumMapping(universum, A);
+			mapB = universumMapping(universum, B);
+			mapC = universumMapping(universum, C);
+			mapD = universumMapping(universum, D);
+			int* mapE = copyElements(mapA, mapB, mapC, mapD);
+			printByteArray(mapE, universum);
+                	break;
 		}
 		case '4':{
-				long wordA = toWord(universumMapping(universum, A));
-				long wordB = toWord(universumMapping(universum, B));
-				long wordC = toWord(universumMapping(universum, C));
-				long wordD = toWord(universumMapping(universum, D));
-                long wordE = copyElements(wordA, wordB, wordC, wordD);
-                printWord(wordE, universum);
+			long wordA = toWord(universumMapping(universum, A));
+			long wordB = toWord(universumMapping(universum, B));
+			long wordC = toWord(universumMapping(universum, C));
+			long wordD = toWord(universumMapping(universum, D));
+          		long wordE = copyElements(wordA, wordB, wordC, wordD);
+                	printWord(wordE, universum);
 		}
 	}
 	return 0;
