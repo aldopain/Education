@@ -1,4 +1,5 @@
 #include <header.h>
+using namespace std;
 
 Set Set::operator|(const Set&B){
 	Set C;
@@ -23,16 +24,28 @@ Set Set::operator&(const Set&B){
 				if(A[i] == B[j])
 					C.A[C.n++] = A[i];
 		}
-	C.A[C.n] = '\n';
+	C.A[C.n] = 0;
 	return C;
 }
 
 Set Set::operator~(const Set&B){
-	
+	Set C;
+	for(char c = 'a'; c <= 'z'; c++){
+		bool f = true;
+		for(int j = 0; j < n; j++)
+			if(c == A[j]){
+				f = false;
+				break;
+			}
+		if(f)
+			C.A[C.n++] = c;
+	}
+	C.A[C.n] = 0;
+	return C;
 }
 
 void Set::print(){
-
+	cout << S << " = [" << A << "]" << endl;
 }
 
 Set::Set(char){
