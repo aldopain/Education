@@ -1,3 +1,11 @@
+/*
+ * header.h
+
+ *
+ *  Created on: 23 сент. 2016 г.
+ *      Author: Яан
+ */
+
 #ifndef HEADER_H_
 #define HEADER_H_
 #endif /* HEADER_H_ */
@@ -10,26 +18,42 @@
 
 class Set{
 private:
-	static int N;
-	int n;
-	char S, *A;
+	static const int N = 26;
+	int length;
+	char name, *elements;
 public:
 	Set operator|(const Set&);
 	Set operator&(const Set&);
-	Set operator~(const Set&);
+	Set operator~() const;
 	void print();
-	int power(){return n;};
+	int power();
 	Set(char);
 	Set();
 	Set(const Set&);
 	Set operator = (const Set&);
-	~Set(){delete[] A;};
+	~Set();
 };
 
 class Word{
-
+private:
+	static const int N = 26;
+	char name;
+	long word;
+public:
+	Word();
+	Word(char);
+	Word(long);
+	Word(const Word&);
+	Word operator = (const Word&);
+	Word operator|(const Word&);
+	Word operator&(const Word&);
+	Word operator~() const;
+	void print();
 };
 
 class ByteArr{
-
+private:
+	static const int N = 32;
+	int length, *elements;
+	char name;
 };
