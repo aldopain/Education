@@ -1,11 +1,3 @@
-/*
- * header.h
-
- *
- *  Created on: 23 сент. 2016 г.
- *      Author: Яан
- */
-
 #ifndef HEADER_H_
 #define HEADER_H_
 #endif /* HEADER_H_ */
