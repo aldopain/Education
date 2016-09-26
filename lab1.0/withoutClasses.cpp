@@ -3,10 +3,14 @@
 #include <iostream>
 #include <cstdlib>
 #include <Windows.h>
+#include <time.h>
 
-#define nullptr NULL;
+#define nullptr NULL
 
 const int u = 26;
+const long numOfIterations = 10000000;
+const int menu = 4;
+const char universum[] = { "abcdefghijklmnopqrstuvwxyz" };
 
 using namespace std;
 
@@ -53,7 +57,7 @@ bool checkForRepeat(Element* E, char element){
 	return true;
 }
 
-Element* copyElements(Element* A, Element* D, Element* E){
+Element* test(Element* A, Element* D, Element* E){
 	for (Element* i = A; i; i = i->next) {
 		bool flag = true;
 		if (checkForRepeat(E, i->e)){
@@ -69,7 +73,7 @@ Element* copyElements(Element* A, Element* D, Element* E){
 	return E;
 }
 
-int* copyElements(int mapA[], int mapB[], int mapC[], int mapD[]){
+int* test(int mapA[], int mapB[], int mapC[], int mapD[]){
 	int* mapE = new int[u];
 	for (int i = 0; i < u; i++){
 		mapE[i] = (mapA[i] || mapB[i] || mapC[i]) && !mapD[i];
@@ -77,7 +81,7 @@ int* copyElements(int mapA[], int mapB[], int mapC[], int mapD[]){
 	return mapE;
 }
 
-int* universumMapping(char* universum, char* A){
+int* universumMapping(char* A){
 	int* map = new int[u];
 	for (int i = 0; i < u; i++)
 		map[i] = 0;
@@ -90,7 +94,7 @@ int* universumMapping(char* universum, char* A){
 	return map;
 }
 
-void printWord(long word, char* universum){
+void printWord(long word){
     for(int i = 0; i < u; i++)
         if(word & (1 << i)){
             cout << universum[i];
@@ -98,16 +102,26 @@ void printWord(long word, char* universum){
     cout << endl;
 }
 
-void printByteArray(int* ba, char* universum){
+void printByteArray(int* ba){
     for(int i = 0; i < u; i++){
         if(ba[i] == 1){
             cout << universum[i];
         }
     }
 }
+char* randomizer(){
+	char* A;
+	A = new char[u+1];
+	int curLen = 0;
+	for (int j = 0; j < u; j++){
+		if(rand()%2)
+			A[curLen++] = universum[j];
+	}
+	A[curLen] = '\0';
+	return A;
+}
 
-
-int copyElements(char A[], char E[], char D[], int curLen){
+int test(char A[], char E[], char D[], int curLen){
 	for (int i = 0; A[i]; i++) {
 		bool flag = true;
 		if (checkForRepeat(E, A[i], curLen)){
@@ -129,39 +143,38 @@ long toWord(int* A){
     return word;
 }
 
-long copyElements(long A, long B, long C, long D){
-    long E = (A|B|C)&~E;
+long test(long A, long B, long C, long D){
+    long E = (A|B|C)&~D;
     return E;
 }
 
 int main() {
+	srand(time(nullptr));
 	setlocale(LC_ALL, "Russian");
 	SetConsoleCP(866);
-	char universum[] = { "abcdefghijklmnopqrstuvwxyz" };
-	char A[u], B[u], C[u], D[u];
+	char *A, *B, *C, *D;
 	char E[u];
-	cout << "Введите A" << endl;
-	cin >> A;
-	cout << "Введите B" << endl;
-	cin >> B;
-	cout << "Введите C" << endl;
-	cin >> C;
-	cout << "Введите D" << endl;
-	cin >> D;
-	cout << "1. Работа с массивами\n2. Работа со структурами\n3. Работа через массивы битов\n4. Работа через машинные слова" << endl;
-	char menu;
-	cin >> menu;
+	A = randomizer();
+	B = randomizer();
+	C = randomizer();
+	D = randomizer();
+	cout << A << endl << B << endl << C << endl << D << endl;
 	switch (menu){
-		case '1':{
-			int curLen = 0;
-			curLen = copyElements(A, E, D, curLen);
-			curLen = copyElements(B, E, D, curLen);
-			curLen = copyElements(C, E, D, curLen);
-			E[curLen] = 0;
+		case 1:{
+			clock_t begin = clock();
+			for(int i = 0; i < numOfIterations; i++){
+				int curLen = 0;
+				curLen = test(A, E, D, curLen);
+				curLen = test(B, E, D, curLen);
+				curLen = test(C, E, D, curLen);
+				E[curLen] = 0;
+			}
 			cout << E << endl;
+			clock_t end = clock();
+			cout << end - begin;
 			break;
 		}
-		case '2':{
+		case 2:{
 			Element* strA = nullptr;
 			Element* strB = nullptr;
 			Element* strC = nullptr;
@@ -171,32 +184,48 @@ int main() {
 			strB = getStructFromArray(B);
 			strC = getStructFromArray(C);
 			strD = getStructFromArray(D);
-			strE = copyElements(strA, strD, strE);
-			strE = copyElements(strB, strD, strE);
-			strE = copyElements(strC, strD, strE);
+			clock_t begin = clock();
+			for(int i = 0; i < numOfIterations; i++){
+				strE = test(strA, strD, strE);
+				strE = test(strB, strD, strE);
+				strE = test(strC, strD, strE);
+			}
 			printStruct(strE);
+			clock_t end = clock();
+			cout << end - begin;
 			break;
 		}
-		case '3':{
+		case 3:{
+			int* mapE;
 			int* mapA = new int[u];
 			int* mapB = new int[u];
 			int* mapC = new int[u];
 			int* mapD = new int[u];
-			mapA = universumMapping(universum, A);
-			mapB = universumMapping(universum, B);
-			mapC = universumMapping(universum, C);
-			mapD = universumMapping(universum, D);
-			int* mapE = copyElements(mapA, mapB, mapC, mapD);
-			printByteArray(mapE, universum);
-                	break;
+			mapA = universumMapping(A);
+			mapB = universumMapping(B);
+			mapC = universumMapping(C);
+			mapD = universumMapping(D);
+			clock_t begin = clock();
+			for(int i = 0; i < numOfIterations; i++){
+				mapE = test(mapA, mapB, mapC, mapD);
+			}
+			printByteArray(mapE);
+			clock_t end = clock();
+			cout << endl << end - begin;
+            break;
 		}
-		case '4':{
-			long wordA = toWord(universumMapping(universum, A));
-			long wordB = toWord(universumMapping(universum, B));
-			long wordC = toWord(universumMapping(universum, C));
-			long wordD = toWord(universumMapping(universum, D));
-          		long wordE = copyElements(wordA, wordB, wordC, wordD);
-                	printWord(wordE, universum);
+		case 4:{
+			long wordE;
+			long wordA = toWord(universumMapping(A));
+			long wordB = toWord(universumMapping(B));
+			long wordC = toWord(universumMapping(C));
+			long wordD = toWord(universumMapping(D));
+			clock_t begin = clock();
+			for(int i = 0; i < numOfIterations; i++)
+				wordE = test(wordA, wordB, wordC, wordD);
+            printWord(wordE);
+            clock_t end = clock();
+            cout << end - begin;
 		}
 	}
 	return 0;
