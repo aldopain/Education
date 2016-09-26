@@ -1,10 +1,3 @@
-/*
- * Word.cpp
- *
- *  Created on: 24 сент. 2016 г.
- *      Author: Яан
- */
-
 #include "header.h"
 using namespace std;
 
