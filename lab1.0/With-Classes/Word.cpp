@@ -1,8 +1,6 @@
 #include "header.h"
 using namespace std;
 
-const char universum[] = {"abcdefghijklmnoprstuvwxyz"};
-
 Word::Word():word(0),name('E'){}
 
 Word::Word(char c):word(rand()),name(c){

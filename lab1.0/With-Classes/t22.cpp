@@ -4,17 +4,19 @@
 
 #include "header.h"
 
-#define nullptr NULL
-
-const long numOfIterations = 1000000000;
+const long numOfIterations = 1;
 
 using namespace std;
 
 int main() {
 	srand(time(nullptr));
 	clock_t begin = clock();
+
+	//List A('A'), B('B'), C('C'), D('D'), E;
+
 	//Set A('A'), B('B'), C('C'), D('D'), E;
-	Word A('A'), B('B'), C('C'), D('D'), E;
+	ByteArr A('A'), B('B'), C('C'), D('D'), E;
+	//Word A('A'), B('B'), C('C'), D('D'), E;
 	for(long q = 0; q < numOfIterations; q++){
 		E = (A|B|C)&~D;
 	}
