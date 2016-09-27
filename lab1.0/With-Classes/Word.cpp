@@ -1,14 +1,5 @@
-/*
- * Word.cpp
- *
- *  Created on: 24 сент. 2016 г.
- *      Author: Яан
- */
-
 #include "header.h"
 using namespace std;
-
-const char universum[] = {"abcdefghijklmnoprstuvwxyz"};
 
 Word::Word():word(0),name('E'){}
 

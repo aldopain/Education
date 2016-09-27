@@ -1,10 +1,3 @@
-/*
- * Set.cpp
- *
- *  Created on: 23 сент. 2016 г.
- *      Author: Яан
- */
-
 #include "header.h"
 using namespace std;
 

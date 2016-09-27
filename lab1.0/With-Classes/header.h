@@ -1,11 +1,3 @@
-/*
- * header.h
-
- *
- *  Created on: 23 сент. 2016 г.
- *      Author: Яан
- */
-
 #ifndef HEADER_H_
 #define HEADER_H_
 #endif /* HEADER_H_ */
@@ -16,9 +8,12 @@
 #include <cstdlib>
 #include <Windows.h>
 
+#define nullptr NULL
+const char universum[] = {"abcdefghijklmnopqrstuvwxyz"};
+static const int N = 26;
+
 class Set{
 private:
-	static const int N = 26;
 	int length;
 	char name, *elements;
 public:
@@ -36,7 +31,6 @@ public:
 
 class Word{
 private:
-	static const int N = 26;
 	char name;
 	long word;
 public:
@@ -53,7 +47,33 @@ public:
 
 class ByteArr{
 private:
-	static const int N = 32;
-	int length, *elements;
+	bool elements[N];
 	char name;
+public:
+	ByteArr();
+	ByteArr(char);
+	ByteArr(char*);
+	ByteArr(const ByteArr&);
+	ByteArr operator = (const ByteArr&);
+	ByteArr operator|(const ByteArr&);
+	ByteArr operator&(const ByteArr&);
+	ByteArr operator~() const;
+	void print();
+};
+
+class List{
+private:
+	char name;
+	char* head;
+	List *next;
+public:
+	List();
+	List(char);
+	List(char*);
+	List(const List&);
+	List operator = (const List&);
+	List operator|(const List&);
+	List operator&(const List&);
+	List operator~() const;
+	void print();
 };
