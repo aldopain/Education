@@ -52,16 +52,10 @@ ByteArr ByteArr::operator&(const ByteArr&B){
 	return a;
 }
 
-/*Word Word::operator~() const{
-	Word a;
-	a.word = ~word;
-	return a;
-}*/
-
 ByteArr ByteArr::operator~() const{
 	ByteArr a;
 	for(int i = 0; i < N; i++)
-		a.elements[i] = ~elements[i];
+		a.elements[i] = !elements[i];
 	return a;
 }
 
