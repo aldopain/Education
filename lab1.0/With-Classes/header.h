@@ -61,11 +61,22 @@ public:
 	void print();
 };
 
+class Elements{
+private:
+    char element;
+    Elements *next;
+public:
+    Elements():next(nullptr), element('0'){};
+    Elements(char c):element(c), next(nullptr){};
+    Elements(Elements* n, char c):element(c), next(n){};
+    Elements(const Elements&);
+    void print();
+};
+
 class List{
 private:
 	char name;
-	char* head;
-	List *next;
+	Elements elements;
 public:
 	List();
 	List(char);
