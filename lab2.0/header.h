@@ -10,11 +10,32 @@
 
 using namespace std;
 
+template <class Item> class Stack{
+	Item* S;
+	int t;
+public:
+	Stack(int max):S(new Item[max]), t(0){}
+	int empty() const{ return t == 0;}
+	void push(Item item){S[t++] = item;}
+	Item pop(){ return(t?S[--t]:0);}
+};
+
+template <class Item> class Queue{
+	Item* Q;
+	int h, t, N;
+public:
+	Queue(int max):h(0), t(0), N(max), Q(new Item[max + 1]){}
+	int empty() const{ return (h%N) == t;}
+	void put(Item item){Q[t++] = item; t%=N;}
+	Item get(){h%=N; return Q[h++];}
+};
+
 class Node{
 private:
 	char name;
 	Node* left;
 	Node* right;
+	int childCount;
 public:
 	Node();
 	~Node();
@@ -31,16 +52,15 @@ class Tree{
 	Node* makeNode(int depth);
 	void showNode(Node* v, int r, int c);
 	Tree(const Tree&);
-	//Tree(Tree&&);
 	Tree operator=(const Tree&) const;
-	//Tree operator=(Tree&&) const;
 public:
+	Node* getRoot();
 	Tree(char num, char maxnum, int maxrow);
 	~Tree();
 	void makeTree();
 	bool exist();
-	int dfs();
 	int bfs();
+	int childCount(Node*);
 	void showTree();
 };
 
