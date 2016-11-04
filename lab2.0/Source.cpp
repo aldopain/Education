@@ -10,6 +10,8 @@ int main(){
 	setlocale(LC_ALL, "Russian");
 	tr.makeTree();
 	tr.showTree();
-	puts("end");
+	tr.childCount(tr.getRoot());
+	tr.bfs();
+	puts("endq");
 	return 0;
 }

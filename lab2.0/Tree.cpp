@@ -63,3 +63,36 @@ void Tree::showTree(){
 	}
 	cout << '\n';
 }
+
+Node* Tree::getRoot(){
+	return root;
+}
+
+int Tree::bfs(){
+	const int qmax = 20;
+	int count = 0;
+	Queue <Node*> Q(qmax);
+	Q.put(root);
+	while(!Q.empty()){
+		Node* v = Q.get();
+		cout << v->name << '_';
+		count++;
+		if(v->left) Q.put(v->left);
+		if(v->right) Q.put(v->right);
+	}
+	return count;
+}
+
+int Tree::childCount(Node* start){
+	int k = 0;
+	if(start->left){
+		k++;
+		k+= childCount(start->left);
+	}
+	if(start->right){
+		k++;
+		k+= childCount(start->right);
+	}
+	cout << start->name << " = " << k << endl;
+	return k;
+}
