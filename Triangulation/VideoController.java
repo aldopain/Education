@@ -33,7 +33,7 @@ public class VideoController {
 	 * all frames should be called as numbers (ex.: 1.jpeg, 2.jpeg ... 10000.jpeg, etc.)
 	 * start and finish - nums of first and last frames in directory
 	 */
-	void createVideo(int start, int finish, File video, String imgPath, VideoFormat format) throws IOException{
+	static void createVideo(int start, int finish, File video, String imgPath, VideoFormat format) throws IOException{
 		 AVIOutputStream out = null;
 		 Graphics2D g = null;
 	     try {
